@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Have-To-Do List!</title>
+		<style>
+			body {
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+			div.stuff {
+				margin-top: 50px;
+			}
+			input.button {
+				padding-left: 10px;
+				padding-right: 10px;
+				margin-left: 20px;
+			}
+		</style>
+		<script>
+			let count = 0;
+			function addTask() {
+				console.log(count);
+				let taskText = document.getElementById('taskText').value;
+				console.log(taskText);
+				let list = document.getElementById('list');
+				let newLabel = document.createElement('p');
+				newLabel.innerHTML = `  ${taskText}`;
+				newLabel.style = 'display: inline;';
+				newLabel.id = `label${count}`;
+				if(count) list.appendChild(document.createElement('br'));
+				list.appendChild(newLabel);
+				list.appendChild(document.createElement('br'));
+				count++;
+				update();
+			}
+			function update() {
+				document.getElementById("heading").innerHTML = `Tasks to do: ${count}`;
+			}
+		</script>
+	</head>
+	<body>
+		<div style="margin-left: 100px;">
+			<div class="stuff"><h2>To-Do List, by Rigan Burnwal</h2></div>
+			<div class="stuff"><h2 id="heading">Tasks to do: 0</h2></div>
+			<div id="list" class="stuff"></div>
+			<div class="stuff">
+				<input type="text" id="taskText" size="40"/>
+				<input type="button" value="Add Task!" class="button" onclick="addTask()"/>
+			</div>
+		</div>
+	</body>
+</html>
