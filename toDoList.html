@@ -2,69 +2,8 @@
 <html>
 	<head>
 		<title>Kar ke dikhayenge!</title>
-		<style>
-			body {
-				font-family: Verdana, Geneva, Tahoma, sans-serif;
-			}
-			div.stuff {
-				margin-top: 50px;
-			}
-			input.button {
-				padding-left: 10px;
-				padding-right: 10px;
-				margin-left: 20px;
-			}
-			div#list {
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-				border: 2px solid black;
-				border-radius: 25px;
-				width: 370px;
-				padding: 20px;
-			}
-		</style>
-		<script>
-			let count = 0;
-			function addTask() {
-				console.log(count);
-				let taskText = document.getElementById('taskText').value;
-				console.log(taskText);
-				let list = document.getElementById('list');
-				let newCheckBox = document.createElement('input');
-				newCheckBox.type = 'checkbox';
-				newCheckBox.id = `${count}`;
-				newCheckBox.name = `task${count}`;
-				newCheckBox.class = 'taskItem';
-				newCheckBox.onclick = function() {
-					if(newCheckBox.checked) {
-						count--;
-						update();
-					} else {
-						count++;
-						update();
-					}
-				};
-				let newLabel = document.createElement('p');
-				newLabel.innerHTML = `  ${taskText}`;
-				newLabel.style = 'display: inline;';
-				newLabel.id = `label${count}`;
-				if(count) list.appendChild(document.createElement('br'));
-				list.appendChild(newCheckBox);
-				list.appendChild(newLabel);
-				list.appendChild(document.createElement('br'));
-				count++;
-				update();
-			}
-			function update() {
-				document.getElementById("heading").innerHTML = `Tasks to do: ${count}`;
-			}
-			function clearAll() {
-				count = 0;
-				document.getElementById("list").innerHTML="";
-				update();
-			}
-		</script>
+		<link rel="stylesheet" type="text/css" href="styles.css"/>
+		<script src="code.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div style="margin-left: 100px;">
