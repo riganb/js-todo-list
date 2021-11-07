@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Have-To-Do List!</title>
+		<title>Kar ke dikhayenge!</title>
 		<style>
 			body {
 				font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -14,6 +14,15 @@
 				padding-right: 10px;
 				margin-left: 20px;
 			}
+			div#list {
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				border: 2px solid black;
+				border-radius: 25px;
+				width: 370px;
+				padding: 20px;
+			}
 		</style>
 		<script>
 			let count = 0;
@@ -22,11 +31,26 @@
 				let taskText = document.getElementById('taskText').value;
 				console.log(taskText);
 				let list = document.getElementById('list');
+				let newCheckBox = document.createElement('input');
+				newCheckBox.type = 'checkbox';
+				newCheckBox.id = `${count}`;
+				newCheckBox.name = `task${count}`;
+				newCheckBox.class = 'taskItem';
+				newCheckBox.onclick = function() {
+					if(newCheckBox.checked) {
+						count--;
+						update();
+					} else {
+						count++;
+						update();
+					}
+				};
 				let newLabel = document.createElement('p');
 				newLabel.innerHTML = `  ${taskText}`;
 				newLabel.style = 'display: inline;';
 				newLabel.id = `label${count}`;
 				if(count) list.appendChild(document.createElement('br'));
+				list.appendChild(newCheckBox);
 				list.appendChild(newLabel);
 				list.appendChild(document.createElement('br'));
 				count++;
@@ -34,6 +58,11 @@
 			}
 			function update() {
 				document.getElementById("heading").innerHTML = `Tasks to do: ${count}`;
+			}
+			function clearAll() {
+				count = 0;
+				document.getElementById("list").innerHTML="";
+				update();
 			}
 		</script>
 	</head>
@@ -45,6 +74,7 @@
 			<div class="stuff">
 				<input type="text" id="taskText" size="40"/>
 				<input type="button" value="Add Task!" class="button" onclick="addTask()"/>
+				<input type="button" value="Clear All!" class="button" onclick="clearAll()"/>
 			</div>
 		</div>
 	</body>
